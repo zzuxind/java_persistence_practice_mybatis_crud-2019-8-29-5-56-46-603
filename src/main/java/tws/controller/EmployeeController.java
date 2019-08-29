@@ -18,7 +18,7 @@ public class EmployeeController {
     private EmployeeMapper employeeMapper;
 
     @GetMapping("")
-    public ResponseEntity<List<Employee>> getAll() {
+    public ResponseEntity<List<Employee>> getAll(@RequestParam(value = "name",required = false) String nameLike) {
         return ResponseEntity.ok(employeeMapper.selectAll());
     }
     @GetMapping("{employeeID}")
@@ -39,6 +39,12 @@ public class EmployeeController {
         employeeMapper.updateEmployeeByID(employeeID,employee);
         employee.setId(employeeID);
         return ResponseEntity.ok(employee);
+    }
+
+    @DeleteMapping("{employeeID}")
+    public  ResponseEntity deleteEmployeeByID(@PathVariable String employeeID){
+        employeeMapper.deleteEmployeeByID(employeeID);
+        return  ResponseEntity.ok().build();
     }
 
 

@@ -16,4 +16,6 @@ public interface EmployeeMapper {
     Employee getEmployeeByID(@Param("employeeID") String employeeID);
 
     void updateEmployeeByID(@Param("id") String employeeID, @Param("employee") Employee employee);
+
+    void deleteEmployeeByID(@Param("id") String employeeID);
 }

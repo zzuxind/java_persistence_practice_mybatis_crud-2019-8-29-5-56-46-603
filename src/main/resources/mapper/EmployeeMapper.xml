@@ -19,4 +19,8 @@
         update employee set name=#{employee.name},age=#{employee.age}
         where id=#{id}
     </update>
+
+    <delete id="deleteEmployeeByID">
+        delete from employee where id = #{id}
+    </delete>
 </mapper>

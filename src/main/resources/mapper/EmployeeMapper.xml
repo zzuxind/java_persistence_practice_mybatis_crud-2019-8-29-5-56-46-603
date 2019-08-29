@@ -4,4 +4,13 @@
     <select id="selectAll" resultType="tws.entity.Employee">
         select * from `employee`;
     </select>
+
+    <select id="getEmployeeByID" resultType="tws.entity.Employee">
+        select * from employee where id=#{employeeID}
+    </select>
+    <insert id="insert">
+        insert into employee
+        values
+        (#{employee.id},#{employee.name},#{employee.age})
+    </insert>
 </mapper>

@@ -2,11 +2,7 @@ package tws.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tws.entity.Employee;
 import tws.repository.EmployeeMapper;
 
@@ -25,5 +21,18 @@ public class EmployeeController {
     public ResponseEntity<List<Employee>> getAll() {
         return ResponseEntity.ok(employeeMapper.selectAll());
     }
+    @GetMapping("{employeeID}")
+    public ResponseEntity getEmployeeByID(@PathVariable String employeeID){
+        return ResponseEntity.ok(employeeMapper.getEmployeeByID(employeeID));
+    }
+
+    @PostMapping()
+    public  ResponseEntity insert(@RequestBody Employee employee){
+        String id= UUID.randomUUID().toString();
+        employee.setId(id);
+        employeeMapper.insert(employee);
+        return ResponseEntity.created(URI.create("employees/"+id)).build();
+    }
+
 
 }

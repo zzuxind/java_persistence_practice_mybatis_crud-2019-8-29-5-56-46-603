@@ -4,7 +4,7 @@
     <select id="selectAll" resultType="tws.entity.Employee">
         select * from employee where 1
         <if test="nameLike != null">
-          and  name like `%${nameLike}%`
+          and  name like '%${nameLike}%'
         </if>
     </select>
 

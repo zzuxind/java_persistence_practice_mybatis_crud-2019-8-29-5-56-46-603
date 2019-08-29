@@ -34,5 +34,12 @@ public class EmployeeController {
         return ResponseEntity.created(URI.create("employees/"+id)).build();
     }
 
+    @PutMapping("{employeeID}")
+    public ResponseEntity updateEmployeeByID(@PathVariable String employeeID,@RequestBody Employee employee){
+        employeeMapper.updateEmployeeByID(employeeID,employee);
+        employee.setId(employeeID);
+        return ResponseEntity.ok(employee);
+    }
+
 
 }

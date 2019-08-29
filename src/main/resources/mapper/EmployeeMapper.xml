@@ -8,9 +8,15 @@
     <select id="getEmployeeByID" resultType="tws.entity.Employee">
         select * from employee where id=#{employeeID}
     </select>
+
     <insert id="insert">
         insert into employee
         values
         (#{employee.id},#{employee.name},#{employee.age})
     </insert>
+
+    <update id="updateEmployeeByID">
+        update employee set name=#{employee.name},age=#{employee.age}
+        where id=#{id}
+    </update>
 </mapper>

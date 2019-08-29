@@ -14,4 +14,6 @@ public interface EmployeeMapper {
     void insert(@Param("employee") Employee employee);
 
     Employee getEmployeeByID(@Param("employeeID") String employeeID);
+
+    void updateEmployeeByID(@Param("id") String employeeID, @Param("employee") Employee employee);
 }

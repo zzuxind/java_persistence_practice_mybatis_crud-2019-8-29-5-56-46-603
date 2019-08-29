@@ -2,7 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="tws.repository.EmployeeMapper">
     <select id="selectAll" resultType="tws.entity.Employee">
-        select * from `employee`;
+        select * from employee where 1
+        <if test="nameLike != null">
+          and  name like `%${nameLike}%`
+        </if>
     </select>
 
     <select id="getEmployeeByID" resultType="tws.entity.Employee">

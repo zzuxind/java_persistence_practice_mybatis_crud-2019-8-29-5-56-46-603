@@ -18,8 +18,8 @@ public class EmployeeController {
     private EmployeeMapper employeeMapper;
 
     @GetMapping("")
-    public ResponseEntity<List<Employee>> getAll(@RequestParam(value = "name",required = false) String nameLike) {
-        return ResponseEntity.ok(employeeMapper.selectAll());
+    public ResponseEntity<List<Employee>> getAll(@RequestParam(value = "nameLike",required = false) String nameLike) {
+        return ResponseEntity.ok(employeeMapper.selectAll(nameLike));
     }
     @GetMapping("{employeeID}")
     public ResponseEntity getEmployeeByID(@PathVariable String employeeID){

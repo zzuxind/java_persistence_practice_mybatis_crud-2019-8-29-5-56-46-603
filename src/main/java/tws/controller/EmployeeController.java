@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tws.entity.Employee;
 import tws.repository.EmployeeMapper;
+import tws.service.EmployeeService;
 
 import java.net.URI;
 import java.util.List;
@@ -16,14 +17,19 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeMapper employeeMapper;
+    @Autowired
+    private EmployeeService employeeService;
 
     @GetMapping("")
-    public ResponseEntity<List<Employee>> getAll(@RequestParam(value = "nameLike",required = false) String nameLike) {
-        return ResponseEntity.ok(employeeMapper.selectAll(nameLike));
+    public ResponseEntity<List<Employee>> getAll(@RequestParam(value = "nameLike",required = false) String nameLike,
+                                                 @RequestParam(value = "page",required = false) Integer page,
+                                                 @RequestParam(value = "pageSize",required = false)Integer pageSize) {
+        //Integer start=(page-1)*pageSize;
+        return ResponseEntity.ok(employeeMapper.selectAll(nameLike,page,pageSize));
     }
     @GetMapping("{employeeID}")
-    public ResponseEntity getEmployeeByID(@PathVariable String employeeID){
-        return ResponseEntity.ok(employeeMapper.getEmployeeByID(employeeID));
+    public ResponseEntity getEmployWithDesc(@PathVariable String employeeID){
+        return ResponseEntity.ok(employeeService.getEmployWithDesc(employeeID));
     }
 
     @PostMapping()

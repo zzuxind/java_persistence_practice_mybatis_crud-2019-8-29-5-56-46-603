@@ -6,6 +6,10 @@
         <if test="nameLike != null">
           and  name like '%${nameLike}%'
         </if>
+        <bind name="key_offset" value="(page-1)*pageSize"></bind>
+        <if test="page != null and pageSize != null">
+            OFFSET #{key_offset} ROWS FETCH NEXT #{pageSize} ROWS ONLY;
+        </if>
     </select>
 
     <select id="getEmployeeByID" resultType="tws.entity.Employee">

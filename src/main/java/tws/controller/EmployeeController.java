@@ -15,8 +15,7 @@ import java.util.UUID;
 @RequestMapping("/employees")
 public class EmployeeController {
 
-//    @Autowired
-//    private EmployeeMapper employeeMapper;
+
     @Autowired
     private EmployeeService employeeService;
 
